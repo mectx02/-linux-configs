@@ -55,7 +55,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
 #
-input "2:8:AlpsPS/2_ALPS_GlidePoint" {
+input type:touchpad {
 	tap disabled
 	natural_scroll enabled
 	middle_emulation disabled
