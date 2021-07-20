@@ -1,14 +1,26 @@
 #!/bin/sh
 # Mostly just copy commands, so I'm okay with using /bin/sh
 
-# First check for sudo privilages
-fontdir=/usr/share/fonts/
-configdir=$HOME/.config/
+# 
+# Variables
+# 
 
-echo -e "This script requires sudo privilages in order to correctly install fonts"
+# User identification for home folder
+user="$(id -u 1000 -n)"
+
+# Directories
+fontdir=/usr/share/fonts/
+configdir=/home/$user/.config/
+
+
+# Check for root status
+if [ "$EUID" != 0 ]; then
+	echo -e "This script requires sudo privilages in order to correctly install fonts"
+fi
+
 [ "$UID" -eq 0 ] || exec sudo /bin/sh "$0" "$@"
 
-
+# Copy commands
 echo "Copying sway directory to $configdir..."
 cp -r sway $configdir
 echo "Copying waybar directory to $configdir..."
