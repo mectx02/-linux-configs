@@ -1,119 +1,101 @@
 {
-    // "layer": "top", // Waybar at top layer
-    "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 20, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
-    "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "network", "cpu", "memory", "backlight", "battery", "tray"],
-    // Modules configuration
-    // "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // },
-    "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-    "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ ",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-        "unknown-tag": "N/A",
-        "interval": 2,
-        "consume-icons": {
-            "on": " "
-        },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)"
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
-    },
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10
-    },
-    "clock": {
-	"interval": 1,
-        // "timezone": "America/New_York",
-        "tooltip-format": "{:%A | %D}",
-        "format": "{:%H:%M:%S %Z}",
-	//"format-alt": "{:%Y-%m-%d}"
-    },
-    "cpu": {
-        "format": "CPU: {usage}%",
-        "tooltip": false
-    },
-    "memory": {
-        "format": "MEM: {}%"
-    },
-    "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
-    },
-    "backlight": {
-        "format": "BKL: {percent}%",
-    },
-    "battery": {
-        "states": {
-            // "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "BAT: {capacity}%",
-        "format-charging": "CHG: {capacity}%",
-        "format-plugged": "FULL: {capacity}%",
-        "format-alt": "BAT: {time} rem",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-    },
-    "network": {
-        "format-wifi": "{ifname}: {ipaddr}",
-        "format-ethernet": "{ifname}: {ipaddr}",
-        "format-linked": "{ifname}: No IP",
-        "format-disconnected": "Disconnected",
-        "format-alt": "{essid}: ({signalStrength}%)"
-    },
-    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "VOL: {volume}%",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": "MUTE",
-        "on-click": "pavucontrol"
-    }
+	// General waybar setup
+	"height": 20, 
+
+	// Module ordering
+	"modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
+	"modules-center": ["clock"],
+	"modules-right": ["pulseaudio", "network", "cpu", "memory", "backlight", "battery", "tray"],
+	
+	/*
+	 * Module Settings
+	 */
+
+	// Sway/mode
+	"sway/mode": {
+		"format": "<span style=\"italic\">{}</span>"
+	},
+
+
+	// Idle Inhibitor
+	"idle_inhibitor": {
+		"format": "{icon}",
+		"format-icons": {
+			"activated": "",
+			"deactivated": ""
+		}
+	},
+
+	// Tray
+	"tray": {
+		// "icon-size": 21,
+		"spacing": 10
+	},
+
+	// Clock
+	"clock": {
+		"interval": 1,
+		"tooltip-format": "{:%A | %D}",
+		"format": "{:%H:%M:%S %Z}",
+	},
+
+	// Sound/PulseAudio
+	"pulseaudio": {
+		"scroll-step": -1.25, // %, can be a float
+		"format": "VOL: {volume}%",
+		"format-bluetooth": "{volume}% {icon} {format_source}",
+		"format-bluetooth-muted": " {icon} {format_source}",
+		"format-muted": "VOL: MUTE",
+		"on-click": "pactl set-sink-mute -1 toggle",
+		"tooltip": false
+	},
+
+	// Network
+	"network": {
+		"format-wifi": "{ifname}: {ipaddr}",
+		"format-ethernet": "{ifname}: {ipaddr}",
+		"format-linked": "{ifname}: No IP",
+		"format-disconnected": "Disconnected",
+		"format-alt": "{essid}: ({signalStrength}%)",
+		"tooltip-format": "{essid}: ({signalStrength}%)",
+		"on-click-right": "nm-connection-editor"
+	},
+
+	// CPU
+	"cpu": {
+		"format": "CPU: {usage}%",
+		"interval": 1
+	},
+
+	// Memory
+	"memory": {
+		"format": "MEM: {used:0.2f} GiB",
+		"format-alt": "MEM: {avail:0.2f} GiB",
+		"tooltip-format": "{total:0.2f} GiB total | {}%"
+	},
+
+	// Backlight
+	"backlight": {
+		"format": "BKL: {percent}%",
+		"on-scroll-down": "brightnessctl set 1%-",
+		"on-scroll-up": "brightnessctl set +1%",
+		"smooth-scrolling-threshold": 2
+	},
+
+	// Battery
+	"battery": {
+		"format-time": "{H}:{M}",
+		"states": {
+			// "good": 95,
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "BAT: {capacity}%",
+		"format-charging": "CHG: {capacity}%",
+		"format-plugged": "FULL: {capacity}%",
+		"format-alt": "BAT: {time} rem",
+		"format-full": "BAT: FULL",
+		"tooltip-format": "Time remaining: {time}"
+	}
+
 }

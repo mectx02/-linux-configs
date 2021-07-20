@@ -20,15 +20,6 @@ window#waybar.hidden {
     opacity: 0.2;
 }
 
-/*
-window#waybar.empty {
-    background-color: transparent;
-}
-window#waybar.solo {
-    background-color: #FFFFFF;
-}
-*/
-
 window#waybar.termite {
     background-color: #353535;
 }
@@ -99,14 +90,9 @@ window#waybar.chromium {
 }
 
 #battery {
-    background-color: #000000;
-    color: #3f3cff;
+    color: #26a65b;
 }
 
-#battery.charging, #battery.plugged {
-    color: #26A65B;
-    background-color: #000000;
-}
 
 @keyframes blink {
     to {
@@ -131,7 +117,7 @@ label:focus {
 
 #cpu {
     background-color: #000000;
-    color: #2ecc71;
+    color: #0030cf;
 }
 
 #memory {
@@ -143,15 +129,15 @@ label:focus {
 }
 
 #backlight {
-    color: #90b1b1;
+    color: #bebebe;
 }
 
 #network {
-    color: #2980b9;
+    color: #47b5ff;
 }
 
 #network.disconnected {
-    color: #f53c3c;
+    color: #ff0000;
 }
 
 #pulseaudio {
@@ -160,20 +146,6 @@ label:focus {
 
 #pulseaudio.muted {
     color: #2a5c45;
-}
-
-#custom-media {
-    background-color: #66cc99;
-    color: #2a5c45;
-    min-width: 100px;
-}
-
-#custom-media.custom-spotify {
-    background-color: #66cc99;
-}
-
-#custom-media.custom-vlc {
-    background-color: #ffa000;
 }
 
 #temperature {

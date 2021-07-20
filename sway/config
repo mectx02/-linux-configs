@@ -25,7 +25,7 @@ set $term alacritty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu dmenu_path | bemenu | xargs swaymsg exec --
+set $menu j4-dmenu-desktop --dmenu='bemenu -i --nb "#3f3f3f" --nf "#dcdccc" --fn "SF Mono 10"' --term='alacritty'
 
 ### Output configuration
 #
