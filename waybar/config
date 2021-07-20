@@ -46,7 +46,7 @@
 		"format-bluetooth": "{volume}% {icon} {format_source}",
 		"format-bluetooth-muted": " {icon} {format_source}",
 		"format-muted": "VOL: MUTE",
-		"on-click": "pactl set-sink-mute -1 toggle",
+		"on-click": "pactl set-sink-mute 0 toggle",
 		"tooltip": false
 	},
 
