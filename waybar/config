@@ -45,19 +45,18 @@
 		"format": "VOL: {volume}%",
 		"format-bluetooth": "{volume}% {icon} {format_source}",
 		"format-bluetooth-muted": " {icon} {format_source}",
-		"format-muted": "VOL: MUTE",
+		"format-muted": "VOL: {volume}%",
 		"on-click": "pactl set-sink-mute 0 toggle",
 		"tooltip": false
 	},
 
 	// Network
 	"network": {
-		"format-wifi": "{ifname}: {ipaddr}",
-		"format-ethernet": "{ifname}: {ipaddr}",
-		"format-linked": "{ifname}: No IP",
+		"format": "{ipaddr}",
+		"format-linked": "No IP",
 		"format-disconnected": "Disconnected",
 		"format-alt": "{essid}: ({signalStrength}%)",
-		"tooltip-format": "{essid}: ({signalStrength}%)",
+		"tooltip-format": "Interface: {ifname}",
 		"on-click-right": "nm-connection-editor"
 	},
 
@@ -69,8 +68,9 @@
 
 	// Memory
 	"memory": {
-		"format": "MEM: {used:0.2f} GiB",
-		"format-alt": "MEM: {avail:0.2f} GiB",
+		"interval": 1,
+		"format": "MEM: {used:0.2f} GiB used",
+		"format-alt": "MEM: {avail:0.2f} GiB avail",
 		"tooltip-format": "{total:0.2f} GiB total | {}%"
 	},
 
@@ -94,6 +94,7 @@
 		"format-charging": "CHG: {capacity}%",
 		"format-plugged": "FULL: {capacity}%",
 		"format-alt": "BAT: {time} rem",
+		"format-plugged-alt": "CHG: {time} rem",
 		"format-full": "BAT: FULL",
 		"tooltip-format": "Time remaining: {time}"
 	}
