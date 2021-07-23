@@ -9,7 +9,7 @@ user="$(id -u 1000 -n)"
 fontdir=/usr/share/fonts/
 homedir=/home/$user
 configdir=$homedir/.config/
-desktopdir=$homedir/.local/share/applications/
+desktopdir=$homedir/.local/share
 
 
 # Check for root status
@@ -32,7 +32,7 @@ echo "Copying waybar directory to $configdir..."
 cp -r waybar $configdir
 
 echo "Copying firefox.desktop to $desktopdir..."
-cp -r desktop-files $desktopdir
+cp -r applications $desktopdir
 
 echo "Copying SFMono font directory to $fontdir..."
 cp -r SFMono $fontdir
