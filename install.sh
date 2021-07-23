@@ -31,7 +31,7 @@ cp -r sway $configdir
 echo "Copying waybar directory to $configdir..."
 cp -r waybar $configdir
 
-echo "Copying firefox.desktop to $desktopdir..."
+echo "Copying applications directory to $desktopdir..."
 cp -r applications $desktopdir
 
 echo "Copying SFMono font directory to $fontdir..."
