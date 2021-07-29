@@ -24,12 +24,16 @@ desktopdir=$homedir/.local/share
 [ ! -d "$desktopdir" ] && mkdir -p $desktopdir && echo "Made local desktop directory at $desktopdir"
 
 
+# 
+# TODO: make selection about window manager and copy files accordingly
+# 	Needed for the addition of i3-wm files to directory
+
 # Copy over the configuration directories to their new homes
 echo "Copying sway directory to $configdir..."
-cp -r sway $configdir
+cp -r sway-wm/sway $configdir
 
 echo "Copying waybar directory to $configdir..."
-cp -r waybar $configdir
+cp -r sway-wm/waybar $configdir
 
 echo "Copying applications directory to $desktopdir..."
 cp -r applications $desktopdir
