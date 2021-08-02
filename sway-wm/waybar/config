@@ -3,9 +3,9 @@
 	"height": 20, 
 
 	// Module ordering
-	"modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
-	"modules-center": ["clock"],
-	"modules-right": ["pulseaudio", "network", "cpu", "memory", "backlight", "battery", "tray"],
+	"modules-left": ["sway/workspaces", "clock", "network", "sway/mode", "custom/media"],
+	"modules-center": ["sway/window"],
+	"modules-right": ["pulseaudio", "cpu", "memory", "backlight", "battery", "tray"],
 	
 	/*
 	 * Module Settings
@@ -15,6 +15,8 @@
 	"sway/mode": {
 		"format": "<span style=\"italic\">{}</span>"
 	},
+
+	// Sway/window
 
 
 	// Idle Inhibitor
