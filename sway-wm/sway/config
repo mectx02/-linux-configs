@@ -7,7 +7,7 @@
 ### Pretty stuff
 #
 # window title font
-font pango:SFUIText 9
+font pango:SFUIText 1
 
 ### Variables
 #
@@ -211,6 +211,19 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+
+
+# 
+# Window Styling
+#
+
+# Configure a gap
+gaps inner 8
+
+# Remove the title bar
+titlebar_border_thickness 0
+titlebar_padding 0
+
 
 #
 # Status Bar:
