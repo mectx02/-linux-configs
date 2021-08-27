@@ -1,53 +1,95 @@
 #!/bin/sh
-# Mostly just copy commands, so I'm okay with using /bin/sh
 
 
-# User identification for home folder
+# User identification for home fulder
 user="$(id -u 1000 -n)"
 
 # Directories
-fontdir=/usr/share/fonts/
+fontdir=/usr/share/fonts
 homedir=/home/$user
-configdir=$homedir/.config/
+configdir=$homedir/.config
 desktopdir=$homedir/.local/share
 
 
 # Check for root status
-[ "$UID" -eq 0 ] || exec sudo /bin/sh "$0" "$@"
+if [ "$UID" -eq 0 ]; then
+	echo "Not run as root; may have some issues copying files..."
+fi
+
+# Check for existence of desired programs
+if [ -e "/usr/bin/sway" ]; then
+	if [ ! -d "$configdir/sway" ]; then
+		mkdir -p $configdir/sway
+		echo "Made directory for detected swaywm"
+	fi
+fi
 
 
-# Check for existence of sway, waybar, and alacritty config directories
-# If they don't exist, make them (and save some trouble later)
-[ ! -d "$configdir/sway" ] && mkdir -p $configdir/sway && echo "Made directory for sway config at $configdir/sway"
-[ ! -d "$configdir/waybar" ] && mkdir -p $configdir/waybar && echo "Made directory for waybar config at $configdir/waybar"
-[ ! -d "$configdir/alacritty" ] && mkdir -p $configdir/alacritty && echo "Made directory for alacritty config at $configdir/alacritty"
-[ ! -d "$desktopdir" ] && mkdir -p $desktopdir && echo "Made local desktop directory at $desktopdir"
+if [ -e "/usr/bin/waybar" ]; then
+	if [ ! -d "$configdir/waybar" ]; then
+		mkdir -p $configdir/waybar
+		echo "Made directory for detected waybar"
+	fi
+fi
 
 
-# 
-# TODO: make selection about window manager and copy files accordingly
-# 	Needed for the addition of i3-wm files to directory
+if [ -e "/usr/bin/i3" ]; then
+	if [ ! -d "$configdir/i3" ]; then
+		mkdir -p $configdir/i3
+		echo "Made directory for detected i3wm"
+	fi
+fi
 
-# Copy over the configuration directories to their new homes
-echo "Copying sway directory to $configdir..."
-cp -r sway-wm/sway $configdir
 
-echo "Copying waybar directory to $configdir..."
-cp -r sway-wm/waybar $configdir
+if [ -e "/usr/bin/alacritty" ]; then
+	if [ ! -d "$configdir/alacritty" ]; then
+		mkdir -p $configdir/alacritty
+		echo "Made directory for detected alacritty"
+	fi
+fi
 
-echo "Copying applications directory to $desktopdir..."
-cp -r applications $desktopdir
 
-echo "Copying SFMono font directory to $fontdir..."
-cp -r SFMono $fontdir
+if [ -e "/usr/bin/firefox" ]; then
+	if [ ! -d "$desktopdir/applications" ]; then
+		mkdir -p $desktopdir/applications
+		echo "Made directory for applications"
+	fi
+fi
 
-echo "Copying SFUIDisplay font directory to $fontdir..."
-cp -r SFUIDisplay $fontdir
 
-echo "Copying SFUIText font directory to $fontdir..."
-cp -r SFUIText $fontdir
+# Copy over files to their intended directories (if they exist)
+if [ -e "$configdir/sway" ]; then
+	echo "Copying sway directory..."
+	cp -r sway-wm/sway $configdir/
+fi
 
-echo "Copying .zshrc file to $homedir..."
+if [ -e "$configdir/waybar" ]; then
+	echo "Copying waybar directory..."
+	cp -r sway-wm/waybar $configdir/
+fi
+
+if [ -e "$configdir/i3" ]; then
+	echo "Copying i3 directory..."
+	cp -r i3-wm/i3 $configdir/
+fi
+
+if [ -e "$configdir/alacritty" ]; then
+	echo "Copying alacritty directory..."
+	cp -r alacritty $configdir/
+fi
+
+if [ -e "/usr/bin/firefox" ] && [ -e "/usr/bin/Xwayland" ]; then
+	echo "Copying firefox.desktop file..."
+	cp applications/firefox.desktop $desktopdir/applications/firefox.desktop
+fi
+
+if [ -e "/usr/share/fonts/SF*" ]; then
+	echo "WARNING: THIS MIGHT FAIL!"
+	echo "Copying SF fonts..."
+	cp -r fonts/* /usr/share/fonts/
+fi
+
+echo "Copying .zshrc file to home directory..."
 cp .zshrc $homedir/.zshrc
 
 echo "Done!"
