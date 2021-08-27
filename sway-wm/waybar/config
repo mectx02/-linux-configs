@@ -3,9 +3,9 @@
 	"height": 20, 
 
 	// Module ordering
-	"modules-left": ["sway/workspaces", "clock", "network", "sway/mode", "custom/media"],
-	"modules-center": ["sway/window"],
-	"modules-right": ["pulseaudio", "cpu", "memory", "backlight", "battery", "tray"],
+	"modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
+	"modules-center": ["clock"],
+	"modules-right": ["pulseaudio", "network", "cpu", "memory", "backlight", "battery", "tray"],
 	
 	/*
 	 * Module Settings
@@ -15,8 +15,6 @@
 	"sway/mode": {
 		"format": "<span style=\"italic\">{}</span>"
 	},
-
-	// Sway/window
 
 
 	// Idle Inhibitor
@@ -41,15 +39,15 @@
 		"format": "{:%H:%M:%S %Z}",
 	},
 
-	// Sound/PulseAudio
+	// Sound
 	"pulseaudio": {
-		"scroll-step": -1.25, // %, can be a float
+		"smooth-scrolling-threshold": 2,
 		"format": "VOL: {volume}%",
-		"format-bluetooth": "{volume}% {icon} {format_source}",
-		"format-bluetooth-muted": " {icon} {format_source}",
 		"format-muted": "VOL: {volume}%",
-		"on-click": "pactl set-sink-mute 0 toggle",
-		"tooltip": false
+		"on-click": "amixer sset Master toggle",
+		"tooltip": false,
+		"on-scroll-up": "amixer sset Master 1.25%+",
+		"on-scroll-down": "amixer sset Master 1.25%-"
 	},
 
 	// Network

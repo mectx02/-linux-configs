@@ -10,7 +10,7 @@ compinit
 # 
 # Set default applications 
 #
-export EDITOR=vim
+export EDITOR="vim"
 export TERM="xterm-256color"
 
 # Allow for pyenv to work
