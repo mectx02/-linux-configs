@@ -33,14 +33,6 @@ if [ -e "/usr/bin/waybar" ]; then
 fi
 
 
-if [ -e "/usr/bin/i3" ]; then
-	if [ ! -d "$configdir/i3" ]; then
-		mkdir -p $configdir/i3
-		echo "Made directory for detected i3wm"
-	fi
-fi
-
-
 if [ -e "/usr/bin/alacritty" ]; then
 	if [ ! -d "$configdir/alacritty" ]; then
 		mkdir -p $configdir/alacritty
@@ -70,7 +62,7 @@ fi
 
 if [ -e "$configdir/i3" ]; then
 	echo "Copying i3 directory..."
-	cp -r i3-wm/i3 $configdir/
+	cp -r i3-wm/* $configdir/
 fi
 
 if [ -e "$configdir/alacritty" ]; then
