@@ -4,8 +4,8 @@
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: SFMono;
     font-weight: bold;
-    font-size: 11px;
-    min-height: 0;
+    font-size: 14px;
+    min-height: 24px;
 }
 
 window#waybar {

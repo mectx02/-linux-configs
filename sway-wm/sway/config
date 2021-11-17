@@ -34,7 +34,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
 # Example configurations for dual screen setup with MacBook Pro (11,4)
 # Modify your setup accordingly using 'swaymsg -t get_outputs'
-#output eDP-1 resolution 2880x1800 position 0,0 scale 1.75
+output eDP-1 resolution 2880x1800 position 0,0 scale 1.5
 #output HDMI-A-2 resolution 1920x1080 position -1920,0 scale 1.00
 
 ### Idle configuration
@@ -95,7 +95,7 @@ input type:touchpad {
 
     # Change volume
     bindsym XF86AudioRaiseVolume exec --no-startup-id amixer sset Master 7%+ 
-    bindsym XF86AudioLowerVolume exec --no-startup-id amixer sset Master -7%
+    bindsym XF86AudioLowerVolume exec --no-startup-id amixer sset Master 7%-
     bindsym XF86AudioMute exec --no-startup-id amixer sset Master toggle
 
 #
