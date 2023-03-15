@@ -22,6 +22,7 @@ env:
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
   TERM: xterm-256color 
+  WINIT_X11_SCALE_FACTOR: "1.0"
 
 window:
   # Window dimensions (changes require restart)
@@ -29,9 +30,9 @@ window:
   # Number of lines/columns (not pixels) in the terminal. The number of columns
   # must be at least `2`, while using a value of `0` for columns and lines will
   # fall back to the window manager's recommended size.
-  #dimensions:
-  #  columns: 0
-  #  lines: 0
+  dimensions:
+    columns: 140
+    lines: 35
 
   # Window position (changes require restart)
   #
@@ -45,9 +46,9 @@ window:
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
-  #padding:
-  #  x: 0
-  #  y: 0
+  padding:
+    x: 0
+    y: 0
 
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
@@ -105,26 +106,26 @@ scrolling:
 font:
   # Normal (roman) font face
   normal:
-    family: SF Mono
+    family: IBM Plex Mono 
     style: Regular
 
   # Bold font face
   bold:
-    family: SF Mono
+    family: IBM Plex Mono
     style: Bold
 
   # Italic font face
   italic:
-    family: SF Mono
+    family: IBM Plex Mono
     style: Italic
 
   # Bold italic font face
   bold_italic:
-    family: SF Mono
+    family: IBM Plex Mono 
     style: Bold Italic
 
   # Point size
-  size: 10
+  size: 12
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
